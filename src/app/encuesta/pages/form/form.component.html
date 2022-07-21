@@ -1,0 +1,1691 @@
+
+<div class="container mt-5">
+
+    
+    <h3>Solicitud de Bono de Reinscripción</h3>
+    <hr>
+
+
+    <div class="card p-md-5 p-3 mt-5 shadow-sm p-3 rounded-3">
+        
+
+            <form class="row g-3"
+            autocomplete="off"
+            [formGroup]="form">
+
+                <h5>Datos Personales</h5>
+
+
+                <div class="col-md-4">
+                  <label class="form-label">Nombre(s)</label>
+                  <input type="text" 
+                        class="form-control" 
+                        formControlName="nombre"
+                        readonly>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label">Apellido Paterno</label>
+                  <input type="text" 
+                        class="form-control" 
+                        formControlName="paterno"
+                        readonly>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Apellido Materno</label>
+                    <input type="text" 
+                           class="form-control" 
+                           formControlName="materno"
+                           readonly>
+                  </div>
+
+                <div class="col-md-3">
+                  <label class="form-label">Género</label>
+                  <input type="text" 
+                        class="form-control"
+                        formControlName="sexo"
+                        readonly>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Fecha de nacimiento</label>
+                  <input type="text" 
+                        class="form-control"
+                        formControlName="fecha_nacimiento"
+                        readonly>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">CURP</label>
+                  <input type="text" 
+                        class="form-control" 
+                        formControlName="curp"
+                        readonly>
+                </div>
+                <div class="col-md-3">
+                    <label  class="form-label">Nacionalidad</label>
+                    <input type="text" 
+                            class="form-control" 
+                            placeholder="Nacionalidad"
+                            [ngClass]="{'border-danger': campoValido('nacionalidad') }"
+                            formControlName="nacionalidad">
+                    <div class="form-text text-danger"
+                        *ngIf="campoValido('nacionalidad')">
+                        {{mensajesError('nacionalidad')}}
+                    </div>
+                </div>
+
+                <ng-container formGroupName="lugar_nacimiento">
+                <label>Lugar de Nacimiento</label>
+
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Localidad o Ciudad</label>
+                    <input type="text" 
+                            class="form-control" 
+                            
+                            placeholder="Localidad o Ciudad"
+                            [ngClass]="{'border-danger': campoValido('lugar_nacimiento', 'localidad_ciudad') }"
+                            formControlName="localidad_ciudad">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('lugar_nacimiento', 'localidad_ciudad')">
+                    {{mensajesError('lugar_nacimiento', 'localidad_ciudad')}}
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Municipio</label>
+                    <input type="text" 
+                            class="form-control" 
+                            
+                            placeholder="Municipio"
+                            [ngClass]="{'border-danger': campoValido('lugar_nacimiento', 'municipio') }"
+                            formControlName="municipio">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('lugar_nacimiento', 'municipio')">
+                    {{mensajesError('lugar_nacimiento', 'municipio')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Estado</label>
+                    <input type="text" 
+                            class="form-control" 
+                            
+                            placeholder="Estado"
+                            [ngClass]="{'border-danger': campoValido('lugar_nacimiento', 'estado') }"
+                            formControlName="estado">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('lugar_nacimiento', 'estado')">
+                    {{mensajesError('lugar_nacimiento', 'estado')}}
+
+                    </div>
+                </div>
+            </ng-container>
+
+
+                <div class="col-md-6">
+                  <label  class="form-label">Estado civil</label>
+                  <select  
+                            class="form-select"
+                            [ngClass]="{'border-danger': campoValido('estado_civil') }"
+                            formControlName="estado_civil">
+                    <option value=''>Seleccione una opción...</option>
+                    <option [ngValue]="'Soltero'">Soltero</option>
+                    <option [ngValue]="'Casado'">Casado</option>
+                    <option [ngValue]="'Union Libre'">Union Libre</option>
+                    <option [ngValue]="'Divorciado'">Divorciado</option>
+                    <option [ngValue]="'Viudo'">Viudo</option>
+                  </select>
+                  <div class="form-text text-danger"
+                  *ngIf="campoValido('estado_civil')">
+                    {{mensajesError('estado_civil')}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <label  class="form-label">Zona Recidencial</label>
+                    <select  
+                            class="form-select"
+                            [ngClass]="{'border-danger': campoValido('zona_recidencial') }"
+                            formControlName="zona_recidencial">
+                      <option value=''>Seleccione una opción...</option>
+                      <option [ngValue]="'Urbana'">Urbana</option>
+                      <option [ngValue]="'Rural'">Rural</option>
+                      <option [ngValue]="'Marginada'">Marginada</option>
+                    </select>
+                    <div class="form-text text-danger"
+                  *ngIf="campoValido('zona_recidencial')">
+                  {{mensajesError('zona_recidencial')}}
+
+                  </div>
+                </div>
+
+                <ng-container formGroupName="domicilio_actual">
+
+                
+                <label>Domicilio Actual</label>
+                <div class="col-md-5">
+                    <label style="font-size: .9rem;"  class="form-label">Calle y Número</label>
+                    <input type="text" 
+                            class="form-control" 
+                            placeholder="Calle y Número"
+                            
+                            [ngClass]="{'border-danger': campoValido('domicilio_actual', 'calle_estado') }"
+                            formControlName="calle_estado">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('domicilio_actual', 'calle_estado')">
+                    {{mensajesError('domicilio_actual', 'calle_estado')}}
+                </div>
+                </div>
+                <div class="col-md-5">
+                    <label style="font-size: .9rem;"  class="form-label">Colonia</label>
+                    <input type="text" 
+                            class="form-control" 
+                            
+                            placeholder="Colonia"
+                            [ngClass]="{'border-danger': campoValido('domicilio_actual', 'colonia') }"
+                            formControlName="colonia">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('domicilio_actual', 'colonia')">
+                    {{mensajesError('domicilio_actual', 'colonia')}}
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label style="font-size: .9rem;"  class="form-label">Código Postal</label>
+                    <input type="text" 
+                        class="form-control" 
+                        [ngClass]="{'border-danger': campoValido('domicilio_actual', 'codigo_postal') }"
+                        
+                        placeholder="Código Postal"
+                        formControlName="codigo_postal">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('domicilio_actual', 'codigo_postal')">
+                    {{mensajesError('domicilio_actual', 'codigo_postal')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Localidad o Ciudad</label>
+                    <input type="text" 
+                        class="form-control" 
+                        
+                        placeholder="Localidad o Ciudad"
+                        [ngClass]="{'border-danger': campoValido('domicilio_actual', 'localidad_ciudad') }"
+                        formControlName="localidad_ciudad">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('domicilio_actual', 'localidad_ciudad')">
+                    {{mensajesError('domicilio_actual', 'localidad_ciudad')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Municipio</label>
+                    <input type="text" 
+                        class="form-control" 
+                        
+                        placeholder="Municipio"
+                        [ngClass]="{'border-danger': campoValido('domicilio_actual', 'municipio') }"
+                        formControlName="municipio">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('domicilio_actual', 'municipio')">
+                    {{mensajesError('domicilio_actual', 'municipio')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Estado</label>
+                    <input type="text" 
+                        class="form-control" 
+                        
+                        placeholder="Estado"
+                        [ngClass]="{'border-danger': campoValido('domicilio_actual', 'estado') }"
+                        formControlName="estado">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('domicilio_actual', 'estado')">
+                    {{mensajesError('domicilio_actual', 'estado')}}
+                    </div>
+                </div>
+            </ng-container>
+
+
+
+                <div class="col-md-3">
+                    <label  class="form-label">Teléfono</label>
+                    <input type="text" 
+                    class="form-control" 
+                    
+                    placeholder="Teléfono"
+                    [ngClass]="{'border-danger': campoValido('telefono') }"
+                    formControlName="telefono">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('telefono')">
+                    {{mensajesError('telefono')}}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label  class="form-label">Celular</label>
+                    <input type="text"
+                        class="form-control" 
+                        
+                        placeholder="Celular"
+                        [ngClass]="{'border-danger': campoValido('celular') }"
+                        formControlName="celular">
+                   <div class="form-text text-danger"
+                    *ngIf="campoValido('celular')">
+                    {{mensajesError('celular')}}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label  class="form-label">Correo electrónico</label>
+                    <input type="text" 
+                        class="form-control" 
+                        
+                        formControlName="correo"
+                        readonly>
+                </div>
+                <div class="col-md-4">
+                    <label  class="form-label">¿Tiene alguna discapacidad?</label>
+                    <select  
+                        class="form-select"
+                        [ngClass]="{'border-danger': campoValido('discapacidad') }"
+                        formControlName="discapacidad">
+                      <option value=''>Seleccione una opción...</option>
+                      <option [ngValue]="'Auditiva'">Auditiva</option>
+                      <option [ngValue]="'Visual'">Visual</option>
+                      <option [ngValue]="'Motora'">Motora</option>
+                      <option [ngValue]="'Ninguna'">Ninguna</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('discapacidad')">
+                    {{mensajesError('discapacidad')}}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label  class="form-label">¿Origen Indigena?</label>
+                    <select  
+                            class="form-select"
+                            [ngClass]="{'border-danger': campoValido('origen_indigena') }"
+                            formControlName="origen_indigena">
+                      <option [ngValue]="null">Seleccione una opción...</option>
+                      <option [ngValue]="true" >Si</option>
+                      <option [ngValue]="false">No</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('origen_indigena')">
+                    {{mensajesError('origen_indigena')}}
+                    </div>
+                </div>
+                <div class="col-md-5" *ngIf="showInput('origen_indigena')">
+                    <label  class="form-label">¿Cual?</label>
+                    <input type="text" 
+                            placeholder="Origen Indigena"
+                            class="form-control" 
+                            
+                            formControlName="tipo_origen">
+                </div>
+                <div class="col-md-6">
+                    <label  class="form-label">¿Tiene actualmente otra beca?</label>
+                    <select  
+                        class="form-select"
+                        [ngClass]="{'border-danger': campoValido('becado') }"
+                        formControlName="becado">
+                        <option [ngValue]="null">Seleccione una opción...</option>
+                        <option [ngValue]="true" >Si</option>
+                        <option [ngValue]="false">No</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('becado')">
+                    {{mensajesError('becado')}}
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="showInput('becado')">
+                    <label  class="form-label">¿Cual?</label>
+                    <input type="text" 
+                    placeholder="Beca"
+                        class="form-control" 
+                        
+                        formControlName="tipo_beca">
+                </div>
+
+                <hr>
+                <h5>Datos Académicos</h5>
+
+                <div class="col-md-2">
+                    <label  class="form-label">Turno</label>
+                    <select class="form-select"
+                            [ngClass]="{'border-danger': campoValido('turno') }"
+                            formControlName="turno">
+                        <option [ngValue]="null">Seleccione una opción...</option>
+                        <option [ngValue]="'Matutino'">Matutino</option>
+                        <option [ngValue]="'Vespertino'">Vespertino</option>
+                        <option [ngValue]="'Mixto'">Mixto</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('turno')">
+                    {{mensajesError('turno')}}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label  class="form-label">Carrera</label>
+                    <input type="text" 
+                            class="form-control"
+                            formControlName="carrera"
+                            readonly>
+                </div>
+                <div class="col-md-2">
+                    <label  class="form-label">Semestre a cursar</label>
+                    <input type="text" 
+                        class="form-control"
+                        formControlName="semestre_proximo"
+                        readonly>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Promedio general</label>
+                    <input type="text" 
+                        class="form-control"
+                        formControlName="promedio"
+                        readonly>
+                </div>
+                <hr>
+
+                <ng-container formGroupName="socioeconomicos">
+                <h5>Datos Socioeconómicos</h5>
+                <p><i>Datos laborales del Alumno</i></p>
+
+                <div class="row">
+
+                
+
+                <div class="col-md-3" style="padding: 0px 8px !important;">
+                    <label  class="form-label">¿Trabajas actualmente?</label>
+                    <select  
+                            [ngClass]="{'border-danger': campoValido('socioeconomicos', 'trabaja') }"
+                            class="form-select"
+                            formControlName="trabaja">
+                            <option [ngValue]="null">Seleccione una opción...</option>
+                            <option [ngValue]="true" >Si</option>
+                            <option [ngValue]="false">No</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'trabaja')">
+                    {{mensajesError('socioeconomicos', 'trabaja')}}
+                    </div>
+                </div>
+
+                <div class="col-md-6"  *ngIf="!showInput('socioeconomicos', 'trabaja')">
+                    <label  class="form-label">¿Perdiste tu trabajo por la contigencia?</label>
+                    <select  
+                            class="form-select"
+                      [ngClass]="{'border-danger': campoValido('socioeconomicos', 'perdio_trabajo') }"
+                            formControlName="perdio_trabajo">
+                        <option [ngValue]="null">Seleccione una opción...</option>
+                        <option [ngValue]="true" >Si</option>
+                        <option [ngValue]="false">No</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'perdio_trabajo')">
+                    {{mensajesError('socioeconomicos', 'perdio_trabajo')}}
+                    </div>
+                </div>
+
+            </div>
+                <ng-container *ngIf="showInput('socioeconomicos', 'trabaja')">
+
+                
+               
+
+                <div class="col-md-6">
+                    <label  class="form-label">¿Dependes económicamente de tus ingresos laborales?</label>
+                    <select  
+                            class="form-select"
+                      [ngClass]="{'border-danger': campoValido('socioeconomicos', 'depende_economicamente') }"
+                            formControlName="depende_economicamente">
+                        <option [ngValue]="null">Seleccione una opción...</option>
+                        <option [ngValue]="true" >Si</option>
+                        <option [ngValue]="false">No</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'depende_economicamente')">
+                    {{mensajesError('socioeconomicos', 'depende_economicamente')}}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label  class="form-label">Ingreso mensual</label>
+                    <div class="input-group ">
+                      <span class="input-group-text">$</span>
+                      <input type="number" 
+                      min="0"
+                      [ngClass]="{'border-danger': campoValido('socioeconomicos', 'ingreso_mensual') }"
+                            class="form-control" 
+                            placeholder="00.00"
+                            formControlName="ingreso_mensual">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'ingreso_mensual')">
+                    {{mensajesError('socioeconomicos', 'ingreso_mensual')}}
+                    </div>
+                </div>
+
+                <div class="col-md-5" >
+                    <label class="form-label">Nombre de la empresa</label>
+                    <input type="text" 
+                        class="form-control"
+                        placeholder="Nombre de la empresa"
+                        [ngClass]="{'border-danger': campoValido('socioeconomicos', 'nombre_empresa') }"
+                        formControlName="nombre_empresa">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'nombre_empresa')">
+                    {{mensajesError('socioeconomicos', 'nombre_empresa')}}
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label  
+                        class="form-label">Puesto</label>
+                    <input type="text" 
+                    placeholder="Puesto"
+                        class="form-control" 
+                      [ngClass]="{'border-danger': campoValido('socioeconomicos', 'puesto') }"
+                         
+                    formControlName="puesto">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'puesto')">
+                    {{mensajesError('socioeconomicos', 'puesto')}}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label  
+                            class="form-label">Antigüedad</label>
+                    <input type="text" 
+                        class="form-control" 
+                        placeholder="Antigüedad"
+                      [ngClass]="{'border-danger': campoValido('socioeconomicos', 'antiguedad') }"
+                        formControlName="antiguedad">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'antiguedad')">
+                    {{mensajesError('socioeconomicos', 'antiguedad')}}
+                    </div>
+                </div>
+               
+
+                <div class="col-md-7">
+                    <label  
+                            class="form-label">Nombre del jefe inmediato</label>
+                    <input type="text" 
+                        class="form-control" 
+                        
+                        placeholder="Nombre del jefe inmediato"
+                      [ngClass]="{'border-danger': campoValido('socioeconomicos', 'nombre_jefe') }"
+                        formControlName="nombre_jefe">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'nombre_jefe')">
+                    {{mensajesError('socioeconomicos', 'nombre_jefe')}}
+
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <label  
+                        class="form-label">Teléfono</label>
+                    <input type="text" 
+                            class="form-control"
+                            placeholder="Teléfono"
+                            
+                      [ngClass]="{'border-danger': campoValido('socioeconomicos', 'telefono') }"
+                            formControlName="telefono">
+                        <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'telefono')">
+                    {{mensajesError('socioeconomicos', 'telefono')}}
+                    </div>
+                </div>
+
+               
+
+                
+
+                <ng-container formGroupName="domicilio_laboral">
+
+                    
+                    <label>Domicilio Laboral</label>
+                    <div class="col-md-4">
+                        <label style="font-size: .9rem;"  class="form-label">Calle</label>
+                        <input type="text" 
+                                class="form-control" 
+                                
+                                placeholder="Calle"
+                                [ngClass]="{'border-danger': campoValido('socioeconomicos', 'domicilio_laboral', 'calle') }"
+                                formControlName="calle">
+                        <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'domicilio_laboral', 'calle')">
+                    {{mensajesError('socioeconomicos', 'domicilio_laboral', 'calle')}}
+                    </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label style="font-size: .9rem;"  class="form-label">No. Exterior</label>
+                        <input type="text" 
+                            class="form-control" 
+                            placeholder="No. Exterior"
+                            [ngClass]="{'border-danger': campoValido('socioeconomicos', 'domicilio_laboral', 'no_exterior') }"
+                            formControlName="no_exterior">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('socioeconomicos', 'domicilio_laboral', 'no_exterior')">
+                    {{mensajesError('socioeconomicos', 'domicilio_laboral', 'no_exterior')}}
+                    </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label style="font-size: .9rem;"  class="form-label">Colonia</label>
+                        <input type="text" 
+                                class="form-control" 
+                                placeholder="Colonia"
+                            [ngClass]="{'border-danger': campoValido('socioeconomicos', 'domicilio_laboral', 'colonia') }"                                
+                                formControlName="colonia">
+                        <div class="form-text text-danger"
+                        *ngIf="campoValido('socioeconomicos', 'domicilio_laboral', 'colonia')">
+                        {{mensajesError('socioeconomicos', 'domicilio_laboral', 'colonia')}}
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label style="font-size: .9rem;"  class="form-label">Municipio</label>
+                        <input type="text" 
+                                class="form-control" 
+                                placeholder="Municipio"
+                            [ngClass]="{'border-danger': campoValido('socioeconomicos', 'domicilio_laboral', 'municipio') }"                                
+                                
+                                formControlName="municipio">
+                            <div class="form-text text-danger"
+                        *ngIf="campoValido('socioeconomicos', 'domicilio_laboral', 'municipio')">
+                        {{mensajesError('socioeconomicos', 'domicilio_laboral', 'municipio')}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label style="font-size: .9rem;"  class="form-label">Localidad o Ciudad</label>
+                        <input type="text" 
+                                class="form-control" 
+                                placeholder="Localidad o Ciudad"
+                            [ngClass]="{'border-danger': campoValido('socioeconomicos', 'domicilio_laboral', 'localidad_ciudad') }"                                
+                                formControlName="localidad_ciudad">
+                        <div class="form-text text-danger"
+                        *ngIf="campoValido('socioeconomicos', 'domicilio_laboral', 'localidad_ciudad')">
+                        {{mensajesError('socioeconomicos', 'domicilio_laboral', 'localidad_ciudad')}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label style="font-size: .9rem;"  class="form-label">Estado</label>
+                        <input type="text" 
+                                class="form-control" 
+                                placeholder="Estado"
+                            [ngClass]="{'border-danger': campoValido('socioeconomicos', 'domicilio_laboral', 'estado') }"                                
+                                formControlName="estado">
+
+                        <div class="form-text text-danger"
+                        *ngIf="campoValido('socioeconomicos', 'domicilio_laboral', 'estado')">
+                        {{mensajesError('socioeconomicos', 'domicilio_laboral', 'estado')}}
+                        </div>
+                    </div>
+                </ng-container>
+                </ng-container>
+            </ng-container>
+
+
+            <ng-container formGroupName="tutor">
+
+                <p><i><strong>Datos laborales de la persona que dependes económicamente</strong></i></p>
+                
+                <div class="col-md-4">
+                    <label  class="form-label">Nombre(s)</label>
+                    <input type="email" 
+                        class="form-control" 
+                        placeholder="Nombre(s)"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'nombre') }"
+                        formControlName="nombre">
+                  <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'nombre')">
+                    {{mensajesError('tutor', 'nombre')}}
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label  class="form-label">Apellido Paterno</label>
+                    <input type="text" 
+                        class="form-control"
+                        placeholder="Apellido Paterno"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'paterno') }"
+                        formControlName="paterno">
+                        <div class="form-text text-danger"
+                        *ngIf="campoValido('tutor', 'paterno')">
+                        {{mensajesError('tutor', 'paterno')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label  class="form-label">Apellido Materno</label>
+                    <input type="text" 
+                        class="form-control" 
+                        placeholder="Apellido Materno"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'materno') }"
+                        formControlName="materno">
+                    <div class="form-text text-danger"
+                        *ngIf="campoValido('tutor', 'materno')">
+                        {{mensajesError('tutor', 'materno')}}
+
+                        </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <label  class="form-label">Parentesco</label>
+                    <select  
+                        class="form-select"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'parentesco') }"
+                        formControlName="parentesco">
+                        <option value="">Seleccione una opción...</option>
+                        <option [ngValue]="'Padre'">Padre</option>
+                        <option [ngValue]="'Madre'">Madre</option>
+                        <option [ngValue]="'Tutor'">Tutor</option>
+                        <option [ngValue]="'Otro'">Otro</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'parentesco')">
+                    {{mensajesError('tutor', 'parentesco')}}
+                </div>
+                </div>
+                
+                <div class="col-md-5">
+                    <label  class="form-label">Puesto</label>
+                    <input type="text" 
+                        class="form-control" 
+                        placeholder="Puesto"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'puesto') }"
+                        formControlName="puesto">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'puesto')">
+                    {{mensajesError('tutor', 'puesto')}}
+
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <label  class="form-label">Ingreso mensual</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                        placeholder="00.00"
+                        min="0"
+                            class="form-control"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'ingreso_mensual') }"
+                            formControlName="ingreso_mensual">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'ingreso_mensual')">
+                    {{mensajesError('tutor', 'ingreso_mensual')}}
+                    </div>
+                </div>
+
+                <ng-container formGroupName="domicilio_laboral">
+
+                
+                
+                <label>Domicilio Laboral</label>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Calle</label>
+                    <input type="text" 
+                        class="form-control" 
+                        
+                        placeholder="Calle"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'domicilio_laboral', 'calle') }"
+                        formControlName="calle">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'domicilio_laboral', 'calle')">
+                    {{mensajesError('tutor', 'domicilio_laboral', 'calle')}}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label style="font-size: .9rem;"  class="form-label">No. Exterior</label>
+                    <input type="text" 
+                            class="form-control" 
+                            placeholder="No. Exterior"
+                            [ngClass]="{'border-danger': campoValido('tutor', 'domicilio_laboral', 'no_exterior') }"
+                            formControlName="no_exterior">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'domicilio_laboral', 'no_exterior')">
+                    {{mensajesError('tutor', 'domicilio_laboral', 'no_exterior')}}
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <label style="font-size: .9rem;"  class="form-label">Colonia</label>
+                    <input type="text" 
+                        class="form-control" 
+                        placeholder="Colonia"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'domicilio_laboral', 'colonia') }"
+                        formControlName="colonia">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'domicilio_laboral', 'colonia')">
+                    {{mensajesError('tutor', 'domicilio_laboral', 'colonia')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Municipio</label>
+                    <input type="text" 
+                        class="form-control" 
+                        placeholder="Municipio"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'domicilio_laboral', 'municipio') }"
+                        formControlName="municipio">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'domicilio_laboral', 'municipio')">
+                    {{mensajesError('tutor', 'domicilio_laboral', 'municipio')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Localidad o Ciudad</label>
+                    <input type="text" 
+                        class="form-control" 
+                        placeholder="Localidad o Ciudad"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'domicilio_laboral', 'localidad_ciudad') }"
+                        formControlName="localidad_ciudad">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'domicilio_laboral', 'localidad_ciudad')">
+                    {{mensajesError('tutor', 'domicilio_laboral', 'localidad_ciudad')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-size: .9rem;"  class="form-label">Estado</label>
+                    <input type="text" 
+                        class="form-control" 
+                        placeholder="Estado"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'domicilio_laboral', 'estado') }"
+                        formControlName="estado">
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'domicilio_laboral', 'estado')">
+                    {{mensajesError('tutor', 'domicilio_laboral', 'estado')}}
+                    </div>
+                </div>
+            </ng-container>
+                
+                <div class="col-md-6">
+                    <label  class="form-label">Número de dependientes económicos</label>
+                    <div class="input-group ">
+                        <input type="number" 
+                            class="form-control" 
+                            min="0"
+                            placeholder="Número de dependientes enconómicos"
+                            [ngClass]="{'border-danger': campoValido('tutor', 'dependientes_economicos') }"
+                            formControlName="dependientes_economicos">
+                        <span class="input-group-text">personas</span>
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'dependientes_economicos')">
+                    {{mensajesError('tutor', 'dependientes_economicos')}}
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label  class="form-label">Ingreso mensual familiar</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                                class="form-control" 
+                                min="0"
+                                placeholder="00.00"
+                            [ngClass]="{'border-danger': campoValido('tutor', 'ingreso_familiar') }"
+                                formControlName="ingreso_familiar">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'ingreso_familiar')">
+                    {{mensajesError('tutor', 'ingreso_familiar')}}
+                    </div>
+                </div>
+                
+                <ng-container formGroupName="egresos">
+                
+                <p><i><strong>Egresos</strong></i></p>
+                
+                <div class="col-md-4">
+                    <label  class="form-label">Alimentación</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                            class="form-control" 
+                            min="0"
+                            placeholder="00.00"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'alimentacion') }"
+                            formControlName="alimentacion">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'alimentacion')">
+                    {{mensajesError('tutor', 'egresos', 'alimentacion')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label  class="form-label">Gas</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                      <input type="number" 
+                            class="form-control" 
+                            placeholder="00.00"
+                            min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'gas') }"
+                            formControlName="gas">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'gas')">
+                    {{mensajesError('tutor', 'egresos', 'gas')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label  class="form-label">Agua</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                                 placeholder="00.00"
+                                class="form-control" 
+                                min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'agua') }"
+                                formControlName="agua">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'agua')">
+                    {{mensajesError('tutor', 'egresos', 'agua')}}
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <label  class="form-label">Predial</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                                placeholder="00.00"
+                                min="0"
+                                class="form-control" 
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'predial') }"
+                                formControlName="predial">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'predial')">
+                    {{mensajesError('tutor', 'egresos', 'predial')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Electricidad</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                                class="form-control" 
+                                min="0"
+                                placeholder="00.00"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'electricidad') }"
+                                formControlName="electricidad">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'electricidad')">
+                    {{mensajesError('tutor', 'egresos', 'electricidad')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Teléfono</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                            class="form-control" 
+                            min="0"
+                            placeholder="00.00"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'telefono') }"
+                            formControlName="telefono">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'telefono')">
+                    {{mensajesError('tutor', 'egresos', 'telefono')}}
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Teléfono Celular</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                                class="form-control" 
+                                placeholder="00.00"
+                                min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'celular') }"
+                                formControlName="celular">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'celular')">
+                    {{mensajesError('tutor', 'egresos', 'celular')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Recreación</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                            class="form-control"
+                            placeholder="00.00" 
+                            min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'recreacion') }"
+                            formControlName="recreacion">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'recreacion')">
+                    {{mensajesError('tutor', 'egresos', 'recreacion')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Transporte</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                            class="form-control" 
+                            placeholder="00.00"
+                            min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'transporte') }"
+                            formControlName="transporte">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'transporte')">
+                    {{mensajesError('tutor', 'egresos', 'transporte')}}
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-4">
+                    <label class="form-label">Educación</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                            class="form-control" 
+                            placeholder="00.00"
+                            min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'educacion') }"
+                            formControlName="educacion">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'educacion')">
+                    {{mensajesError('tutor', 'egresos', 'educacion')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Gastos médicos</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                                class="form-control"
+                                placeholder="00.00"
+                                min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'gastos_medicos') }"
+                                formControlName="gastos_medicos">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'gastos_medicos')">
+                    {{mensajesError('tutor', 'egresos', 'gastos_medicos')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Abonos o créditos</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                            class="form-control" 
+                            placeholder="00.00"
+                            min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'abonos_creditos') }"
+                            formControlName="abonos_creditos">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'abonos_creditos')">
+                    {{mensajesError('tutor', 'egresos', 'abonos_creditos')}}
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-4">
+                    <label class="form-label">Ropa y calzado</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                            class="form-control" 
+                            min="0"
+                            placeholder="00.00"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'ropa_calzado') }"
+                            formControlName="ropa_calzado">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'ropa_calzado')">
+                    {{mensajesError('tutor', 'egresos', 'ropa_calzado')}}
+                    
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label  class="form-label">Fondos de ahorro</label>
+                    <div class="input-group ">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                            class="form-control" 
+                            placeholder="00.00"
+                            min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'fondos_ahorro') }"
+                            formControlName="fondos_ahorro">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'fondos_ahorro')">
+                    {{mensajesError('tutor', 'egresos', 'fondos_ahorro')}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label  class="form-label">Renta</label>
+                    <div class="input-group ">
+                      <span class="input-group-text">$</span>
+                      <input type="number" 
+                        class="form-control"
+                        placeholder="00.00"
+                        min="0"
+                        [ngClass]="{'border-danger': campoValido('tutor', 'egresos', 'renta') }"
+                        formControlName="renta">
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('tutor', 'egresos', 'renta')">
+                    {{mensajesError('tutor', 'egresos', 'renta')}}
+                    </div>
+                </div>
+                </ng-container>
+            </ng-container>
+                
+            <ng-container formGroupName="vivienda">
+
+            
+                <hr>
+                <h5>Vivienda</h5>
+                
+                <div class="col-md-4">
+                    <label class="form-label">Tenencia de la vivienda</label>
+                    <select  
+                        class="form-select"
+                        [ngClass]="{'border-danger': campoValido('vivienda', 'tenencia') }"
+                        formControlName="tenencia">
+                      <option [ngValue]="null">Seleccione una opción...</option>
+                      <option [ngValue]="'Propia'">Propia</option>
+                      <option [ngValue]="'Rentada'">Rentada</option>
+                      <option [ngValue]="'Prestada'">Prestada</option>
+                      <option [ngValue]="'Invadida'">Invadida</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('vivienda', 'tenencia')">
+                    {{mensajesError('vivienda', 'tenencia')}}
+                    </div>
+                </div>
+
+          
+
+                <div class="col-md-4">
+                    <label class="form-label">Tipo vivienda</label>
+                    <select  
+                        class="form-select"
+                        [ngClass]="{'border-danger': campoValido('vivienda', 'tipo') }"
+                        formControlName="tipo">
+                        <option [ngValue]="null">Seleccione una opción...</option>
+                        <option [ngValue]="'Casa sola'">Casa sola</option>
+                        <option [ngValue]="'Departamento'">Departamento</option>
+                        <option [ngValue]="'Vecindad'">Vecindad</option>
+                        <option [ngValue]="'Campamento'">Campamento</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('vivienda', 'tipo')">
+                    {{mensajesError('vivienda', 'tipo')}}
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Número de dormitorios</label>
+                    <div class="input-group ">
+                        <input type="number" 
+                            class="form-control" 
+                            min="0"
+                            [ngClass]="{'border-danger': campoValido('vivienda', 'no_dormitorios') }"
+                            placeholder="Número de dormitorios"
+                            formControlName="no_dormitorios">
+                        <span class="input-group-text">dormitorios</span>
+                    </div>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('vivienda', 'no_dormitorios')">
+                    {{mensajesError('vivienda', 'no_dormitorios')}}
+                    </div>
+                </div>
+
+                <ng-container formGroupName="habitaciones">
+
+                    
+                    <div class="col-md-3 form-check">
+                        <input class="form-check-input" 
+                            type="checkbox"
+                            id="check7"
+                            formControlName="sala">
+                        <label class="form-check-label" for="check7">
+                            Sala
+                        </label>
+                    </div>
+                    <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox"
+                            id="check8"
+                            formControlName="comedor">
+                    <label class="form-check-label" for="check8">
+                        Comedor
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox"
+                            id="check9"
+                            formControlName="bano_privado">
+                    <label class="form-check-label" for="check9">
+                        Baño privado
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check10"
+                            formControlName="bano_compartido">
+                    <label class="form-check-label" for="check10">
+                        Baño colectivo
+                    </label>
+                </div>
+                
+            </ng-container>
+
+            <ng-container formGroupName="material">
+
+                
+                <p><strong><i>Materia predominante en la construcción de la vivienda</i></strong></p>
+                
+                <div class="col-md-4">
+                    <label  class="form-label">Paredes</label>
+                    <select  
+                        class="form-select"
+                        [ngClass]="{'border-danger': campoValido('vivienda', 'material', 'paredes') }"
+                        formControlName="paredes">
+                      <option [ngValue]="null">Seleccione una opción...</option>
+                      <option [ngValue]="'Tabique'">Tabique</option>
+                      <option [ngValue]="'Madera'">Madera</option>
+                      <option [ngValue]="'Cartón'">Cartón</option>
+                      <option [ngValue]="'Otro'">Otro</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('vivienda', 'material', 'paredes')">
+                    {{mensajesError('vivienda',  'material', 'paredes')}}
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label  class="form-label">Techos</label>
+                    <select  
+                        class="form-select"
+                        [ngClass]="{'border-danger': campoValido('vivienda', 'material', 'techos') }"
+                        formControlName="techos">
+                      <option [ngValue]="null">Seleccione una opción...</option>
+                      <option [ngValue]="'Concreto'">Concreto</option>
+                      <option [ngValue]="'Lámina de asbesto'">Lámina de asbesto</option>
+                      <option [ngValue]="'Lámina de cartón'">Lámina de cartón</option>
+                      <option [ngValue]="'Lámina metálica'">Lámina metálica</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('vivienda', 'material', 'techos')">
+                    {{mensajesError('vivienda',  'material', 'techos')}}
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-4">
+                    <label class="form-label">Pisos</label>
+                    <select  
+                        class="form-select"
+                        [ngClass]="{'border-danger': campoValido('vivienda', 'material', 'pisos') }"
+                        formControlName="pisos">
+                      <option [ngValue]="null">Seleccione una opción...</option>
+                      <option [ngValue]="'Mosaico'">Mosaico</option>
+                      <option [ngValue]="'Loseta'">Loseta</option>
+                      <option [ngValue]="'Cemento'">Cemento</option>
+                      <option [ngValue]="'Tierra apisonada'">Tierra apisonada</option>
+                      <option [ngValue]="'Madera'">Madera</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('vivienda', 'material', 'pisos')">
+                    {{mensajesError('vivienda',  'material', 'pisos')}}
+                    </div>
+                </div>
+
+                </ng-container>
+
+            <ng-container formGroupName="mobiliario">
+
+                
+                <label>Mobiliario (marque si cuenta con)</label>
+
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox"
+                            id="check1" 
+                            formControlName="television">
+                    <label class="form-check-label" for="check1">
+                      Televisión
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check2"
+                            formControlName="estereo">
+                            
+                    <label class="form-check-label" for="check2">
+                      Estéreo
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check3"
+                            formControlName="video">
+                            
+                    <label class="form-check-label" for="check3">
+                      Video
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check4"
+                            formControlName="dvd">
+                            
+                    <label class="form-check-label" for="check4">
+                      DVD
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check5"
+                            formControlName="estufa">
+                            
+                    <label class="form-check-label" for="check5">
+                      Estufa
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check6"
+                            formControlName="microondas">
+                    <label class="form-check-label" for="check6">
+                      Horno de microondas
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check11"
+                            formControlName="lavadora">
+                    <label class="form-check-label" for="check11">
+                      Lavadora
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check12"
+                            formControlName="refri">
+                    <label class="form-check-label" for="check12">
+                      Refrigerador
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check13"
+                            formControlName="compu">
+                    <label class="form-check-label" for="check13">
+                      Computadora
+                    </label>
+                </div>
+
+            </ng-container>
+
+            <ng-container formGroupName="servicios">
+
+                
+                <hr>
+                <h5>Servicios</h5>
+
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check21"
+                            formControlName="agua_potable">
+                    <label class="form-check-label" for="check21">
+                      Agua Potable
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check14"
+                            formControlName="luz_electrica">
+                    <label class="form-check-label" for="check14">
+                      Luz eléctrica
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                    type="checkbox" 
+                    id="check15"
+                            formControlName="drenaje">
+                            <label class="form-check-label" for="check15">
+                                Drenaje
+                            </label>
+                        </div>
+                        <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check16"
+                            formControlName="pavimento">
+                            <label class="form-check-label" for="check16">
+                                Pavimento
+                            </label>
+                        </div>
+                        <div class="col-md-3 form-check">
+                            <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check17"
+                            formControlName="transporte">
+                            <label class="form-check-label" for="check17">
+                                Transporte
+                            </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check18"
+                            formControlName="linea_tel">
+                    <label class="form-check-label" for="check18">
+                        Línea Telefónica
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                    type="checkbox" 
+                    id="check19"
+                    formControlName="internet">
+                    <label class="form-check-label" for="check19">
+                        Internet
+                    </label>
+                </div>
+                <div class="col-md-3 form-check">
+                    <input class="form-check-input" 
+                    type="checkbox" 
+                    id="check20"
+                    formControlName="tv_cable">
+                    <label class="form-check-label" for="check20">
+                        Televisión por cable
+                    </label>
+                </div>
+                
+                </ng-container>
+            </ng-container>
+
+
+            <ng-container formGroupName="salud_fam">
+
+
+                <hr>
+                <h5>Salud y Familia</h5>
+
+                <p><strong>Servicios Médicos con los que cuenta la familia</strong></p>
+
+                <div class="col-md-4 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check26"
+                            formControlName="imss">
+                    <label class="form-check-label" for="check26">
+                        IMSS
+                    </label>
+                </div>
+                <div class="col-md-4 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check22"
+                            formControlName="issste">
+                    <label class="form-check-label" for="check22">
+                        ISSSTE
+                    </label>
+                </div>
+                <div class="col-md-4 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check23"
+                            formControlName="centro_salud">
+                    <label class="form-check-label" for="check23">
+                        Centro de Salud
+                    </label>
+                </div>
+                <div class="col-md-4 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check24"
+                            formControlName="dispensario">
+                    <label class="form-check-label" for="check24">
+                        Dispensario
+                    </label>
+                </div>
+                <div class="col-md-4 form-check">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            id="check25"
+                            formControlName="medico_priv">
+                    <label class="form-check-label" for="check25">
+                        Médico Privado
+                    </label>
+                </div>
+
+
+                <div class="col-md-6">
+                    <label class="form-label">Frecuencia con la que asiste el alumno (solicitante de la beca) al médico</label>
+                    <select  
+                            class="form-select"
+                            [ngClass]="{'border-danger': campoValido('salud_fam', 'frecuencia') }"
+                            formControlName="frecuencia">
+                      <option value="">Seleccione una opción...</option>
+                      <option [ngValue]="'Una vez por semana'">Una vez por semana</option>
+                      <option [ngValue]="'Mensualmente'">Mensualmente</option>
+                      <option [ngValue]="'Anualmente'">Anualmente</option>
+                      <option [ngValue]="'Cuando se enferma'">Cuando se enferma</option>
+                    </select>
+                    <div class="form-text text-danger"
+                    *ngIf="campoValido('salud_fam', 'frecuencia')">
+                    {{mensajesError('salud_fam',  'frecuencia')}}
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container formGroupName="familiar">
+
+            
+
+                    <label><strong>Integrantes de la familia que padecen alguna enfermedad frecuente</strong></label>
+    
+                    <div class="alert alert-info" role="alert">
+                        Escribe los datos del familiar y da clic en el botón <strong>Agregar familiar</strong> para añadir al listado. Repite el proceso las veces que sea necesario.
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label  class="form-label">Nombre Completo</label>
+                        <input type="text" 
+                                class="form-control" 
+                                placeholder="Nombre Completo"
+                                formControlName="nombre">
+                    </div>
+                    <div class="col-md-3">
+                        <label  class="form-label">Edad</label>
+                        <input type="number" class="form-control" 
+                        min="0"
+                        placeholder="Edad"
+                        formControlName="edad">
+                    </div>
+                    <div class="col-md-3">
+                        <label  class="form-label">Sexo</label>
+                        <select  class="form-select"
+                        formControlName="sexo">
+                          <option [ngValue]="null">Seleccione una opción...</option>
+                          <option [ngValue]="'Femenino'">Femenino</option>
+                          <option [ngValue]="'Masculino'">Masculino</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Estado Civil</label>
+                        <select  class="form-select"
+                        formControlName="estado_civil">
+                          <option [ngValue]="null">Seleccione una opción...</option>
+                          <option [ngValue]="'Soltero'">Soltero</option>
+                          <option [ngValue]="'Casado'">Casado</option>
+                          <option [ngValue]="'Unión Libre'">Unión Libre</option>
+                          <option [ngValue]="'Divorciado'">Divorciado</option>
+                          <option [ngValue]="'Viudo'">Viudo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label  class="form-label">Escolaridad</label>
+                        <select  class="form-select"
+                        formControlName="escolaridad">
+                          <option [ngValue]="null">Seleccione una opción...</option>
+                          <option [ngValue]="'Primaria'">Primaria</option>
+                          <option [ngValue]="'Secundaria'">Secundaria</option>
+                          <option [ngValue]="'Bachillerato'">Bachillerato</option>
+                          <option [ngValue]="'Licenciatura'">Licenciatura</option>
+                          <option [ngValue]="'Otro'">Otro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Ocupación</label>
+                        <input type="text" class="form-control" 
+                        placeholder="Ocupación"
+                        formControlName="ocupacion">
+                    </div>
+
+                    <p class="text-danger" *ngIf="validaFamiliar">Debe llenar todos los campos con la información de su familiar.</p>
+    
+                    <div class="col-12 d-grid gap-1 d-flex justify-content-end">
+                        <button class="btn btn-outline-danger" (click)="addFamiliar()">Agregar Familiar</button>
+                    </div>
+       
+                </ng-container>
+            
+                <div class="table-responsive" *ngIf="familiares.length > 0">
+                <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Estado Civil</th>
+                        <th scope="col">Escolaridad</th>
+                        <th scope="col">Ocupacion</th>
+                        <th scope="col">Tools</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let familiar of familiares; let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ familiar.nombre }}</td>
+                        <td>{{ familiar.edad }}</td>
+                        <td>{{ familiar.sexo }}</td>
+                        <td>{{ familiar.estado_civil }}</td>
+                        <td>{{ familiar.escolaridad }}</td>
+                        <td>{{ familiar.ocupacion }}</td>
+                        <td><i class="fas fa-times" (click)="deleteFamiliar(i)"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+
+                <hr>
+
+                <label>Documentos</label>
+
+                <div class="alert alert-info" role="alert">
+                    Adjunta <strong> en archivos separados</strong> en formato <strong>pdf</strong>, <strong>jpg</strong> y/o <strong>png</strong>.<br><br>
+                    <p class="m-0"><strong>• Credencial de estudiante</strong><small> (En caso de no contar con ella podrá enviar INE o credencial con fotografía).</small></p>
+                    <p class="m-0"><strong>• Kardex Completo.</strong></p>     
+                    <p class="m-0"><strong>• Comprobante de domicilio</strong><small> no mayor a 3 meses.</small></p>
+                    <p class="m-0"><strong>• Carta de solicitud firmada</strong><small> dirigida a la Directora Lic. Xóchitl Carmona Bareño.</small></p>
+                </div>
+
+                <ng-container *ngIf="usuario.envio_archivos">
+
+                    <p class="text-success">Tus archivos fuerón enviados con éxito. <i class="fa-solid fa-check"></i></p>
+
+                </ng-container>
+
+                <ng-container *ngIf="!usuario.envio_archivos">
+
+
+                <div class="col-12" *ngIf="archivosSubir && archivosSubir.length > 0">
+                        <div *ngFor="let archivo of archivosSubir; let i = index">
+                            <img src="https://www.cancun.tecnm.mx/wp-content/uploads/2021/07/png.png" 
+                                alt="png logo" 
+                                style="width: 30px;"
+                                *ngIf="archivo.type == 'image/png' "
+                                class="me-2 mb-1">
+                            <img src="https://www.cancun.tecnm.mx/wp-content/uploads/2021/07/jpg.png" 
+                                alt="jpg logo" 
+                                style="width: 30px;"
+                                *ngIf="archivo.type == 'image/jpeg' "
+                                class="me-2 mb-1">
+                            <img src="https://www.cancun.tecnm.mx/wp-content/uploads/2021/07/pdf.png" 
+                                alt="pdf logo" 
+                                style="width: 30px;"
+                                *ngIf="archivo.type == 'application/pdf' "
+                                class="me-2 mb-1">
+                             <label >{{ archivosSubir[i].name }}</label>
+                        </div>
+                </div>   
+
+                <div class="col-md-7">
+                     <label class="form-label">Subir Archivo</label>
+                     <input class="form-control form-control-sm"
+                        multiple
+                        type="file"
+                        (change)="changeArchivo( $event?.target?.files )">
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <button class="btn btn-success" (click)="uploadFiles()" [disabled]="!archivosSubir">Enviar archivos</button>
+                    </div>
+                </div>
+                
+
+                
+                <p *ngIf="extensionInvalid" class="text-danger">La extensión de uno o más archivos no es válida.</p>
+                <p *ngIf="notIsFour" class="text-danger">Debe de adjuntar 4 documentos.</p>
+                <hr>
+
+                </ng-container>
+
+                <br>
+             
+
+                <div class="col-md-4 d-grid gap-2">
+                  <button type="submit" 
+                            class="btn btn-primary " 
+                            [disabled]="formSubmitted || !usuario.envio_archivos" 
+                            (click)="guardar()" >
+                            <span *ngIf="!formSubmitted"><i class="fa-solid fa-floppy-disk"></i> Guardar</span>
+                            <div  *ngIf="formSubmitted" class="spinner-grow text-light spinner-grow-sm" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                        </div>
+                        </button>
+                </div>
+              </form>
+        </div>
+
+
+
+</div>
+
+
+<div class="p-3 m-2"></div>

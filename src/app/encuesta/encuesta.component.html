@@ -1,0 +1,17 @@
+
+<app-navbar></app-navbar>
+
+<div class="container mt-5" *ngIf="this.usuario.enviado; else elseBlock" >
+
+    <div class="alert alert-primary text-center" role="alert">
+        <p class="m-0">{{this.usuario.nombre}}, se ha enviado tu <strong>Solicitud de Bono de Reinscripción.</strong></p>
+        <p style="font-size: 20px;" class="m-0">Folio: <strong>{{ this.usuario.folio }}</strong></p>
+    </div>    
+
+</div>
+
+
+
+<ng-template #elseBlock class="mt-5">
+    <app-form></app-form>
+</ng-template>

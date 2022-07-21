@@ -1,0 +1,100 @@
+
+
+<div class="row justify-content-center mt-3">
+  <div class="col-md-10 d-flex justify-content-between">
+    <img src="https://www.cancun.tecnm.mx/wp-content/uploads/2020/02/pleca_tecnm.jpg" height="100" alt="LOGO TECNM">
+    <img src="https://www.cancun.tecnm.mx/wp-content/uploads/2017/09/LOGO-ITCANCUN-MARCA-REGISTRADA.png"  height="100" alt="LOGO TECNM">
+  </div>
+</div>
+
+<div class="row justify-content-center align-items-center">
+
+  <div class="col-md-10 mt-2">
+    <div class="alert alert-info text-center">
+      <h5 class="m-0">Solicitud de Bono de Reinscripción.</h5>
+      Podrás tener acceso si cumples con los requisitos de la convocatoria.
+    </div>
+  </div>
+</div>
+
+
+<div class="row m-0 justify-content-center align-items-center">
+
+  
+
+    <div  style="margin: 0px !important;" class="col-lg-3 col-md-5 col-sm-8 bg-white card shadow-sm p-3 mb-5 rounded-3">
+
+      
+       <!--  <div class="p-1 text-center">
+            <h5 class="card-title">Iniciar sesión</h5>
+        </div> -->
+        
+        <!-- <div class="text-center">
+          <img style="width: 90px;" src="https://www.cancun.tecnm.mx/wp-content/uploads/2017/09/LOGO-ITCANCUN-MARCA-REGISTRADA.png" alt="Logo ITCancún">
+        </div> -->
+
+      
+        <div class="card-body text-left">
+
+            <form autocomplete="off"
+              [formGroup]="form">
+
+
+                <div class="mb-2">
+                  <label class="form-label">No. de Control</label>
+                    <input type="text" 
+                           class="form-control"
+                           [ngClass]="{'border-danger': campoValido('control') }" 
+                           id="inputControl" 
+                           placeholder="No. de Control"
+                           formControlName="control"> 
+                    <div class="form-text text-danger"
+                      *ngIf="campoValido('control')">
+                      {{ mensajesError('control') }}
+                    </div>
+                </div>
+
+
+                <div class="mb-2">
+                  <label class="form-label">Contraseña</label>
+                    <input type="password" 
+                           class="form-control" 
+                           [ngClass]="{'border-danger': campoValido('password') }" 
+                           id="inputPassword" 
+                           placeholder="Contraseña"
+                           formControlName="password">
+                    <div class="form-text text-danger"
+                      *ngIf="campoValido('password')">
+                      {{ mensajesError('password') }}
+
+                    </div>
+                  
+                </div>
+
+
+                <div class="mb-2 form-check">
+                  <input type="checkbox" 
+                         class="form-check-input" 
+                         id="inputCheck"
+                         formControlName="recuerdame">
+                  <label class="form-check-label" for="inputCheck">Recuerdame</label>
+                </div>
+                <div class="d-grid ">
+                    <button type="submit" 
+                            class="btn btn-primary"
+                            (click)="login()"
+                            [disabled]="formSubmitted">
+                            <span *ngIf="!formSubmitted">Iniciar sesión</span>
+                            <div  *ngIf="formSubmitted" class="spinner-grow text-light spinner-grow-sm" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                            </div>
+                    </button>
+                </div>
+            </form>
+
+
+        </div> 
+
+
+    </div>
+</div>
