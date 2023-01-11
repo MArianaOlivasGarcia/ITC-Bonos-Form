@@ -1654,7 +1654,8 @@
 
                 <div class="row mt-3">
                     <div class="col-md-4">
-                        <button class="btn btn-success" (click)="uploadFiles()" [disabled]="!archivosSubir">Enviar archivos</button>
+                        <button class="btn btn-success" 
+                        (click)="uploadFiles()" [disabled]="!archivosSubir || isUploadingFiles">Enviar archivos</button>
                     </div>
                 </div>
                 

@@ -28,6 +28,7 @@ export class FormComponent implements OnInit {
   notIsFour: boolean = false;
 
   archivosSubir: FileList | [];
+  isUploadingFiles: boolean = false;
 
 
 
@@ -320,6 +321,8 @@ export class FormComponent implements OnInit {
 
 
   uploadFiles() {
+
+
     Swal.fire({
       title: '¿Estás seguro?',
       text: 'Una vez enviados tus archivos no podrás hacer cambios.',
@@ -330,6 +333,9 @@ export class FormComponent implements OnInit {
     }).then( (result) => {
       if (result.isConfirmed) {
 
+        this.isUploadingFiles = true;
+        Swal.showLoading();
+
         this.uploadService.subirAchivos( this.archivosSubir )
           .subscribe(resp => {
 
@@ -337,8 +343,11 @@ export class FormComponent implements OnInit {
 
             Swal.fire(
               '¡Archivos enviados con éxito!',
+              'No olvides enviar tu formulario.',
               'success'
             );
+            this.isUploadingFiles = false;
+
 
             }, err => {
               Swal.fire(
@@ -346,6 +355,8 @@ export class FormComponent implements OnInit {
                 err.error.message,
                 'error'
               )
+            this.isUploadingFiles = false;
+
           })
       }
     });
