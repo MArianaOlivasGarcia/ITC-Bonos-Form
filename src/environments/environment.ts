@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:80/api'
+  base_url: 'http://bonos.tectoucan.com/api'
 };
 
 /*

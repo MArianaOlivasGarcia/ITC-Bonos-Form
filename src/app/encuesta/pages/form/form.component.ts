@@ -339,6 +339,15 @@ export class FormComponent implements OnInit {
         this.uploadService.subirAchivos( this.archivosSubir )
           .subscribe(resp => {
 
+            if ( !resp.status ) {
+              Swal.fire(
+                '¡Archivos enviados con éxito!',
+                'No olvides enviar tu formulario.',
+                'error'
+              );
+              return;
+            }
+
             this.usuario.envio_archivos = true;
 
             Swal.fire(
